@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DocSense — Document Classifier</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="shell">
+
+    <header>
+      <div class="logo-mark">
+        <div class="logo-icon">🔍</div>
+        <span class="logo-name">DOCSENSE</span>
+      </div>
+      <h1>Document<br/>Classifier</h1>
+      <p class="subtitle">drop a pdf or image · get the category instantly</p>
+    </header>
+
+    <div id="drop-zone" class="drop-zone">
+      <span class="drop-icon">📄</span>
+      <div class="drop-title">Drop your document here</div>
+      <div class="drop-sub">PDF · JPG · PNG · max 20 MB</div>
+      <button class="btn-browse" type="button" id="btn-browse">Browse files</button>
+      <input type="file" id="file-input" accept=".pdf,.jpg,.jpeg,.png,.webp,.bmp,.tiff" />
+    </div>
+
+    <div id="preview-strip" class="preview-strip">
+      <div id="preview-thumb" class="preview-thumb">📄</div>
+      <div class="preview-info">
+        <div id="preview-name" class="preview-name">—</div>
+        <div id="preview-meta" class="preview-meta">—</div>
+      </div>
+      <button class="btn-clear" type="button" id="btn-clear" title="Remove file">✕</button>
+    </div>
+
+    <button id="btn-classify" class="btn-classify" type="button">
+      ⚡ Classify Document
+    </button>
+
+    <div id="loader" class="loader">
+      <div class="spinner-ring"></div>
+      <div class="loader-text">Analysing document<span class="loader-dots"></span></div>
+    </div>
+
+    <div id="error-box" class="error-box"></div>
+
+    <div id="result-card" class="result-card">
+      <div id="result-badge" class="cat-badge">
+        <div class="cat-dot"></div>
+        <span id="badge-label">—</span>
+      </div>
+      <div id="result-icon" class="result-icon">📄</div>
+      <div id="result-category" class="result-category">—</div>
+      <div id="result-reason" class="result-reason">—</div>
+      <div id="result-filename" class="result-filename">—</div>
+      <div class="result-confidence">
+        <div class="conf-label">
+          <span>confidence</span>
+          <span id="conf-pct">—</span>
+        </div>
+        <div class="conf-bar">
+          <div id="conf-fill" class="conf-fill" style="width: 0%"></div>
+        </div>
+      </div>
+      <button class="btn-again" type="button" id="btn-again">↩ Classify another</button>
+    </div>
+
+    <!-- 4 categories only -->
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-dot" style="background: var(--bank)"></div>
+        <div>
+          <div class="legend-name">Bank Statement</div>
+          <div class="legend-desc">Account &amp; transactions</div>
+        </div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: var(--payslip)"></div>
+        <div>
+          <div class="legend-name">Payslip</div>
+          <div class="legend-desc">Salary &amp; deductions</div>
+        </div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: var(--tax)"></div>
+        <div>
+          <div class="legend-name">Tax Document</div>
+          <div class="legend-desc">Form 16, TDS, PAN</div>
+        </div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background: var(--others)"></div>
+        <div>
+          <div class="legend-name">Others</div>
+          <div class="legend-desc">Everything else</div>
+        </div>
+      </div>
+    </div>
+
+    <footer>content-driven classification · no filename used · powered by DocSense</footer>
+
+  </div>
+
+  <script>
+    const CAT = {
+      "Bank Statement": { color: "var(--bank)",    icon: "🏦" },
+      "Payslip":        { color: "var(--payslip)", icon: "💰" },
+      "Tax Document":   { color: "var(--tax)",     icon: "📋" },
+      "Others":         { color: "var(--others)",  icon: "📁" },
+    };
+
+    let selectedFile = null;
+
+    const dropZone     = document.getElementById('drop-zone');
+    const fileInput    = document.getElementById('file-input');
+    const btnBrowse    = document.getElementById('btn-browse');
+    const previewStrip = document.getElementById('preview-strip');
+    const previewThumb = document.getElementById('preview-thumb');
+    const previewName  = document.getElementById('preview-name');
+    const previewMeta  = document.getElementById('preview-meta');
+    const btnClear     = document.getElementById('btn-clear');
+    const btnClassify  = document.getElementById('btn-classify');
+    const loader       = document.getElementById('loader');
+    const errorBox     = document.getElementById('error-box');
+    const resultCard   = document.getElementById('result-card');
+
+    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+    dropZone.addEventListener('drop', e => {
+      e.preventDefault(); dropZone.classList.remove('drag-over');
+      const f = e.dataTransfer.files[0]; if (f) handleFile(f);
+    });
+
+    btnBrowse.addEventListener('click', e => { e.stopPropagation(); fileInput.click(); });
+    dropZone.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', e => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+
+    function handleFile(file) {
+      selectedFile = file;
+      if (file.type.startsWith('image/')) {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        previewThumb.innerHTML = ''; previewThumb.appendChild(img);
+      } else { previewThumb.innerHTML = '📄'; }
+      previewName.textContent = file.name;
+      previewMeta.textContent = formatSize(file.size) + ' · ' + (file.type || 'unknown type');
+      previewStrip.classList.add('visible');
+      btnClassify.classList.add('visible');
+      resultCard.classList.remove('visible');
+      errorBox.classList.remove('visible');
+      errorBox.textContent = '';
+    }
+
+    btnClear.addEventListener('click', clearFile);
+    document.getElementById('btn-again').addEventListener('click', clearFile);
+    function clearFile() {
+      selectedFile = null; fileInput.value = '';
+      previewThumb.innerHTML = '📄';
+      previewStrip.classList.remove('visible');
+      btnClassify.classList.remove('visible');
+      resultCard.classList.remove('visible');
+      errorBox.classList.remove('visible');
+      errorBox.textContent = '';
+    }
+
+    btnClassify.addEventListener('click', classify);
+    async function classify() {
+      if (!selectedFile) return;
+      setLoading(true);
+      resultCard.classList.remove('visible');
+      errorBox.classList.remove('visible');
+      try {
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+        const response = await fetch('/classify', { method: 'POST', body: formData });
+        const data = await response.json();
+        if (!response.ok || data.error) throw new Error(data.error || 'Server error.');
+        showResult(data);
+      } catch (err) {
+        showError(err.message || 'Something went wrong. Please try again.');
+      } finally { setLoading(false); }
+    }
+
+    function showResult({ category, confidence, reason, filename }) {
+      const cfg = CAT[category] || CAT['Others'];
+      resultCard.style.setProperty('--cat-color', cfg.color);
+      document.getElementById('badge-label').textContent     = category;
+      document.getElementById('result-icon').textContent     = cfg.icon;
+      document.getElementById('result-category').textContent = category;
+      document.getElementById('result-reason').textContent   = reason || '';
+      document.getElementById('result-filename').textContent = filename || '';
+      document.getElementById('conf-pct').textContent        = Math.round(confidence * 100) + '%';
+      document.getElementById('conf-fill').style.width       = '0%';
+      resultCard.classList.add('visible');
+      requestAnimationFrame(() => {
+        setTimeout(() => { document.getElementById('conf-fill').style.width = (confidence * 100) + '%'; }, 80);
+      });
+    }
+
+    function showError(msg) { errorBox.textContent = '⚠ ' + msg; errorBox.classList.add('visible'); }
+    function setLoading(on) { loader.classList.toggle('visible', on); btnClassify.disabled = on; }
+    function formatSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / 1048576).toFixed(1) + ' MB';
+    }
+  </script>
+
+</body>
+</html>

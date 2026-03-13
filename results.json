@@ -1,0 +1,209 @@
+[
+  {
+    "file": "new_outside_data\\AccountStatement.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 0.54,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (3): ['account statement', 'opening balance', 'closing balance']",
+      "Patterns matched (1)"
+    ],
+    "processing_time_ms": 516.1,
+    "error": null
+  },
+  {
+    "file": "new_outside_data\\Bank _statementebrcpt_file_5e37ba9973e09.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 0.72,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (3): ['account statement', 'closing balance', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 393.9,
+    "error": null
+  },
+  {
+    "file": "new_outside_data\\Bank Statement Example Final.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "99988877"
+    },
+    "scores": {
+      "bank_statement": 0.78,
+      "payslip": -0.35,
+      "tax_document": -0.35
+    },
+    "reasoning": [
+      "Keywords matched (5): ['bank statement', 'account statement', 'current account', 'account summary', 'direct deposit']",
+      "Patterns matched (1)"
+    ],
+    "processing_time_ms": 151.3,
+    "error": null
+  },
+  {
+    "file": "new_outside_data\\Bank-Statement-Template-1-TemplateLab.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 0.84,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (4): ['statement of account', 'opening balance', 'closing balance', 'current account']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 66.7,
+    "error": null
+  },
+  {
+    "file": "new_outside_data\\Form 11 - Fillable.pdf",
+    "label": "Others",
+    "confidence": 1.0,
+    "method": "rules",
+    "extraction_method": "claude_vision_pdf",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 0.0,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "No category scored above threshold \u2014 classified as Others"
+    ],
+    "processing_time_ms": 6521.0,
+    "error": null
+  },
+  {
+    "file": "new_outside_data\\form-no-16.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7778,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 0.12,
+      "payslip": 0.36,
+      "tax_document": 0.96
+    },
+    "reasoning": [
+      "Keywords matched (5): ['assessment year', 'tax deducted at source', 'gross total income', 'tax payable', 'section 80c']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 1508.0,
+    "error": null
+  },
+  {
+    "file": "new_outside_data\\Payslip_Aug_2025.pdf",
+    "label": "Payslip",
+    "confidence": 0.9053,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "FCOPR1933L",
+      "employee_id": "108362",
+      "pay_period": "August 2025"
+    },
+    "scores": {
+      "bank_statement": -0.35,
+      "payslip": 1.37,
+      "tax_document": -0.17
+    },
+    "reasoning": [
+      "Keywords matched (7): ['payslip', 'net pay', 'house rent allowance', 'provident fund', 'earnings', 'deductions']",
+      "Patterns matched (4)"
+    ],
+    "processing_time_ms": 59.4,
+    "error": null
+  },
+  {
+    "file": "new_outside_data\\Payslip_Jul_2025.pdf",
+    "label": "Payslip",
+    "confidence": 0.9053,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "FCOPR1933L",
+      "employee_id": "108362",
+      "pay_period": "July 2025"
+    },
+    "scores": {
+      "bank_statement": -0.35,
+      "payslip": 1.37,
+      "tax_document": -0.17
+    },
+    "reasoning": [
+      "Keywords matched (7): ['payslip', 'net pay', 'house rent allowance', 'provident fund', 'earnings', 'deductions']",
+      "Patterns matched (4)"
+    ],
+    "processing_time_ms": 49.0,
+    "error": null
+  },
+  {
+    "file": "new_outside_data\\Payslip_Oct_2025.pdf",
+    "label": "Payslip",
+    "confidence": 0.9053,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "FCOPR1933L",
+      "employee_id": "108362",
+      "pay_period": "October 2025"
+    },
+    "scores": {
+      "bank_statement": -0.35,
+      "payslip": 1.37,
+      "tax_document": -0.17
+    },
+    "reasoning": [
+      "Keywords matched (7): ['payslip', 'net pay', 'house rent allowance', 'provident fund', 'earnings', 'deductions']",
+      "Patterns matched (4)"
+    ],
+    "processing_time_ms": 45.8,
+    "error": null
+  },
+  {
+    "file": "new_outside_data\\Payslip_Sep_2025.pdf",
+    "label": "Payslip",
+    "confidence": 0.9053,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "FCOPR1933L",
+      "employee_id": "108362",
+      "pay_period": "September 2025"
+    },
+    "scores": {
+      "bank_statement": -0.35,
+      "payslip": 1.37,
+      "tax_document": -0.17
+    },
+    "reasoning": [
+      "Keywords matched (7): ['payslip', 'net pay', 'house rent allowance', 'provident fund', 'earnings', 'deductions']",
+      "Patterns matched (4)"
+    ],
+    "processing_time_ms": 54.7,
+    "error": null
+  }
+]
