@@ -1,88 +1,691 @@
 [
   {
-    "file": "new_outside_data\\AccountStatement.pdf",
-    "label": "Bank Statement",
-    "confidence": 0.99,
+    "file": "New_Group_dataset\\appointment_letter_VikramSingh_ThoughtFocus_Feb2024.pdf",
+    "label": "Others",
+    "confidence": 1.0,
     "method": "rules",
     "extraction_method": "pdfplumber",
-    "extracted_fields": {},
+    "extracted_fields": {
+      "employee_id": "EMP1102"
+    },
     "scores": {
-      "bank_statement": 0.54,
-      "payslip": 0.0,
+      "bank_statement": 0.0,
+      "payslip": -0.06,
       "tax_document": 0.0
     },
     "reasoning": [
-      "Keywords matched (3): ['account statement', 'opening balance', 'closing balance']",
-      "Patterns matched (1)"
+      "No category scored above threshold \u2014 classified as Others"
     ],
-    "processing_time_ms": 516.1,
+    "processing_time_ms": 137.9,
     "error": null
   },
   {
-    "file": "new_outside_data\\Bank _statementebrcpt_file_5e37ba9973e09.pdf",
+    "file": "New_Group_dataset\\bank_statement_Amit_Verma_998877665544_April_2024.pdf",
     "label": "Bank Statement",
     "confidence": 0.99,
     "method": "rules",
     "extraction_method": "pdfplumber",
     "extracted_fields": {},
     "scores": {
-      "bank_statement": 0.72,
+      "bank_statement": 1.01,
       "payslip": 0.0,
       "tax_document": 0.0
     },
     "reasoning": [
-      "Keywords matched (3): ['account statement', 'closing balance', 'atm withdrawal']",
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
       "Patterns matched (2)"
     ],
-    "processing_time_ms": 393.9,
+    "processing_time_ms": 59.0,
     "error": null
   },
   {
-    "file": "new_outside_data\\Bank Statement Example Final.pdf",
+    "file": "New_Group_dataset\\bank_statement_Amit_Verma_998877665544_February_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 54.6,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Amit_Verma_998877665544_January_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 51.0,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Amit_Verma_998877665544_July_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 59.9,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Amit_Verma_998877665544_June_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 55.5,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Amit_Verma_998877665544_March_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 52.1,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Amit_Verma_998877665544_May_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 57.9,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Karthik_Rajan_334455667788_April_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 55.8,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Karthik_Rajan_334455667788_March_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 56.3,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Lakshmi_Iyer_556677889900_April_2024.pdf",
     "label": "Bank Statement",
     "confidence": 0.99,
     "method": "rules",
     "extraction_method": "pdfplumber",
     "extracted_fields": {
-      "account_number": "99988877"
+      "account_number": "556677889900"
     },
     "scores": {
-      "bank_statement": 0.78,
-      "payslip": -0.35,
-      "tax_document": -0.35
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
     },
     "reasoning": [
-      "Keywords matched (5): ['bank statement', 'account statement', 'current account', 'account summary', 'direct deposit']",
-      "Patterns matched (1)"
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
     ],
-    "processing_time_ms": 151.3,
+    "processing_time_ms": 50.8,
     "error": null
   },
   {
-    "file": "new_outside_data\\Bank-Statement-Template-1-TemplateLab.pdf",
+    "file": "New_Group_dataset\\bank_statement_Lakshmi_Iyer_556677889900_February_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "556677889900"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 53.2,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Lakshmi_Iyer_556677889900_March_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "556677889900"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 56.9,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Meera_Subramaniam_223344556677_April_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.8582,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "223344556677"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": -0.2
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 55.5,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Meera_Subramaniam_223344556677_February_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "223344556677"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 54.4,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Meera_Subramaniam_223344556677_January_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.8582,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "223344556677"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": -0.2
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 54.3,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Meera_Subramaniam_223344556677_June_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "223344556677"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 57.9,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Meera_Subramaniam_223344556677_March_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "223344556677"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 53.7,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Meera_Subramaniam_223344556677_May_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "223344556677"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 90.8,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Priya_Nair_567890123456_February_2024.pdf",
     "label": "Bank Statement",
     "confidence": 0.99,
     "method": "rules",
     "extraction_method": "pdfplumber",
     "extracted_fields": {},
     "scores": {
-      "bank_statement": 0.84,
+      "bank_statement": 1.01,
       "payslip": 0.0,
       "tax_document": 0.0
     },
     "reasoning": [
-      "Keywords matched (4): ['statement of account', 'opening balance', 'closing balance', 'current account']",
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
       "Patterns matched (2)"
     ],
-    "processing_time_ms": 66.7,
+    "processing_time_ms": 63.9,
     "error": null
   },
   {
-    "file": "new_outside_data\\Form 11 - Fillable.pdf",
+    "file": "New_Group_dataset\\bank_statement_Priya_Nair_567890123456_January_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 57.0,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Priya_Nair_567890123456_March_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 95.0,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Rahul_Sharma_458912340921_April_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "458912340921"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 60.6,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Rahul_Sharma_458912340921_February_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "458912340921"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 100.1,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Rahul_Sharma_458912340921_January_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "458912340921"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 50.3,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Rahul_Sharma_458912340921_March_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.8938,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "458912340921"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.12
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 58.5,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Rahul_Sharma_458912340921_May_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "458912340921"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 55.7,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Sneha_Kulkarni_112233445566_April_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "112233445566"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 54.2,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Sneha_Kulkarni_112233445566_June_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "112233445566"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 53.1,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Sneha_Kulkarni_112233445566_May_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "account_number": "112233445566"
+    },
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 60.3,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Vijay_Patel_445566778899_August_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 52.0,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Vijay_Patel_445566778899_July_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 58.1,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Vijay_Patel_445566778899_June_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.99,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 60.7,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\bank_statement_Vijay_Patel_445566778899_May_2024.pdf",
+    "label": "Bank Statement",
+    "confidence": 0.8582,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 1.01,
+      "payslip": 0.0,
+      "tax_document": -0.2
+    },
+    "reasoning": [
+      "Keywords matched (6): ['account statement', 'opening balance', 'closing balance', 'ifsc code', 'savings account', 'atm withdrawal']",
+      "Patterns matched (2)"
+    ],
+    "processing_time_ms": 81.4,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\credit_card_statement_HDFC_KarthikRajan_Apr2024.pdf",
     "label": "Others",
     "confidence": 1.0,
     "method": "rules",
-    "extraction_method": "claude_vision_pdf",
+    "extraction_method": "pdfplumber",
     "extracted_fields": {},
     "scores": {
       "bank_statement": 0.0,
@@ -92,118 +695,1408 @@
     "reasoning": [
       "No category scored above threshold \u2014 classified as Others"
     ],
-    "processing_time_ms": 6521.0,
+    "processing_time_ms": 40.4,
     "error": null
   },
   {
-    "file": "new_outside_data\\form-no-16.pdf",
-    "label": "Tax Document",
-    "confidence": 0.7778,
+    "file": "New_Group_dataset\\demand_draft_ICICI_PriyaNair_Apr2024.pdf",
+    "label": "Others",
+    "confidence": 0.82,
     "method": "rules",
     "extraction_method": "pdfplumber",
     "extracted_fields": {},
     "scores": {
+      "bank_statement": 0.18,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "No category scored above threshold \u2014 classified as Others"
+    ],
+    "processing_time_ms": 24.5,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\fee_receipt_IIMB_KarthikRajan_Jan2024.pdf",
+    "label": "Others",
+    "confidence": 0.82,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1156"
+    },
+    "scores": {
+      "bank_statement": 0.0,
+      "payslip": 0.18,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "No category scored above threshold \u2014 classified as Others"
+    ],
+    "processing_time_ms": 29.0,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Arjun_Mehta_CMNPQ9012R_FY2021_2022.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 70.7,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Arjun_Mehta_CMNPQ9012R_FY2022_2023.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 64.3,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Arjun_Mehta_CMNPQ9012R_FY2023_2024.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 72.7,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Divya_Krishnamurthy_DLRKV3456S_FY2022_2023.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 74.4,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Divya_Krishnamurthy_DLRKV3456S_FY2023_2024.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 66.8,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Karthik_Rajan_ERTKM7890T_FY2023_2024.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 68.4,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Meera_Subramaniam_IJLVS2345X_FY2022_2023.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 66.1,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Meera_Subramaniam_IJLVS2345X_FY2023_2024.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 70.9,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Neha_Gupta_BRTPK5678L_FY2022_2023.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 66.7,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Neha_Gupta_BRTPK5678L_FY2023_2024.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 65.1,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Pooja_Sharma_GRTMK6789V_FY2023_2024.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 64.8,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Rahul_Sharma_AVKPV1234D_FY2021_2022.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 60.9,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Rahul_Sharma_AVKPV1234D_FY2022_2023.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 116.7,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Rahul_Sharma_AVKPV1234D_FY2023_2024.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 63.6,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Ravi_Teja_Reddy_HRKPT8901W_FY2021_2022.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 112.6,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Ravi_Teja_Reddy_HRKPT8901W_FY2022_2023.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 64.6,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Ravi_Teja_Reddy_HRKPT8901W_FY2023_2024.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 154.1,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Vikram_Singh_FSTPV4567U_FY2022_2023.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 79.3,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\form16_Vikram_Singh_FSTPV4567U_FY2023_2024.pdf",
+    "label": "Tax Document",
+    "confidence": 0.7173,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AABCT1234K",
+      "tan_number": "BLRT12345A"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 0.34,
+      "tax_document": 1.17
+    },
+    "reasoning": [
+      "Keywords matched (8): ['form 16', 'income tax', 'assessment year', 'financial year', 'tax deducted at source', 'taxable income']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['insurance']"
+    ],
+    "processing_time_ms": 69.0,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\gas_bill_Indane_SnehaKulkarni_Jun2024.pdf",
+    "label": "Others",
+    "confidence": 1.0,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 0.0,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "No category scored above threshold \u2014 classified as Others"
+    ],
+    "processing_time_ms": 25.7,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\hospital_bill_ManipalHospitals_AmitVerma_May2024.pdf",
+    "label": "Others",
+    "confidence": 1.0,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 0.0,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "No category scored above threshold \u2014 classified as Others"
+    ],
+    "processing_time_ms": 54.3,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\increment_letter_NehaGupta_ThoughtFocus_Apr2024.pdf",
+    "label": "Others",
+    "confidence": 1.0,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 0.0,
+      "payslip": -0.8,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "No category scored above threshold \u2014 classified as Others"
+    ],
+    "processing_time_ms": 31.4,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\insurance_policy_HDFC_Life_AmitVerma.pdf",
+    "label": "Others",
+    "confidence": 1.0,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "BVPAM1234X"
+    },
+    "scores": {
+      "bank_statement": 0.0,
+      "payslip": 0.0,
+      "tax_document": -1.92
+    },
+    "reasoning": [
+      "No category scored above threshold \u2014 classified as Others"
+    ],
+    "processing_time_ms": 36.9,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\internet_bill_JioFiber_SnehaKulkarni_Jun2024.pdf",
+    "label": "Others",
+    "confidence": 1.0,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 0.0,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "No category scored above threshold \u2014 classified as Others"
+    ],
+    "processing_time_ms": 29.0,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\mutual_fund_statement_AxisMF_RahulSharma_Apr2024.pdf",
+    "label": "Others",
+    "confidence": 0.82,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "AVKPV1234D"
+    },
+    "scores": {
       "bank_statement": 0.12,
-      "payslip": 0.36,
-      "tax_document": 0.96
+      "payslip": 0.0,
+      "tax_document": 0.18
     },
     "reasoning": [
-      "Keywords matched (5): ['assessment year', 'tax deducted at source', 'gross total income', 'tax payable', 'section 80c']",
-      "Patterns matched (2)"
+      "No category scored above threshold \u2014 classified as Others"
     ],
-    "processing_time_ms": 1508.0,
+    "processing_time_ms": 50.9,
     "error": null
   },
   {
-    "file": "new_outside_data\\Payslip_Aug_2025.pdf",
-    "label": "Payslip",
-    "confidence": 0.9053,
+    "file": "New_Group_dataset\\noc_ArjunMehta_ThoughtFocus_May2024.pdf",
+    "label": "Others",
+    "confidence": 1.0,
     "method": "rules",
     "extraction_method": "pdfplumber",
     "extracted_fields": {
-      "pan_number": "FCOPR1933L",
-      "employee_id": "108362",
-      "pay_period": "August 2025"
+      "employee_id": "EMP1067"
     },
     "scores": {
-      "bank_statement": -0.35,
-      "payslip": 1.37,
-      "tax_document": -0.17
+      "bank_statement": 0.0,
+      "payslip": -0.7,
+      "tax_document": 0.0
     },
     "reasoning": [
-      "Keywords matched (7): ['payslip', 'net pay', 'house rent allowance', 'provident fund', 'earnings', 'deductions']",
-      "Patterns matched (4)"
+      "No category scored above threshold \u2014 classified as Others"
     ],
-    "processing_time_ms": 59.4,
+    "processing_time_ms": 20.0,
     "error": null
   },
   {
-    "file": "new_outside_data\\Payslip_Jul_2025.pdf",
-    "label": "Payslip",
-    "confidence": 0.9053,
+    "file": "New_Group_dataset\\offer_letter_AnanyaPillai_ThoughtFocus_Mar2024.pdf",
+    "label": "Others",
+    "confidence": 1.0,
     "method": "rules",
     "extraction_method": "pdfplumber",
-    "extracted_fields": {
-      "pan_number": "FCOPR1933L",
-      "employee_id": "108362",
-      "pay_period": "July 2025"
-    },
+    "extracted_fields": {},
     "scores": {
-      "bank_statement": -0.35,
-      "payslip": 1.37,
-      "tax_document": -0.17
+      "bank_statement": 0.0,
+      "payslip": -0.36,
+      "tax_document": 0.0
     },
     "reasoning": [
-      "Keywords matched (7): ['payslip', 'net pay', 'house rent allowance', 'provident fund', 'earnings', 'deductions']",
-      "Patterns matched (4)"
+      "No category scored above threshold \u2014 classified as Others"
     ],
-    "processing_time_ms": 49.0,
+    "processing_time_ms": 28.8,
     "error": null
   },
   {
-    "file": "new_outside_data\\Payslip_Oct_2025.pdf",
+    "file": "New_Group_dataset\\payslip_Arjun_Mehta_EMP1067_April_2024.pdf",
     "label": "Payslip",
-    "confidence": 0.9053,
+    "confidence": 0.8509,
     "method": "rules",
     "extraction_method": "pdfplumber",
     "extracted_fields": {
-      "pan_number": "FCOPR1933L",
-      "employee_id": "108362",
-      "pay_period": "October 2025"
+      "employee_id": "EMP1067"
     },
     "scores": {
-      "bank_statement": -0.35,
-      "payslip": 1.37,
-      "tax_document": -0.17
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
     },
     "reasoning": [
-      "Keywords matched (7): ['payslip', 'net pay', 'house rent allowance', 'provident fund', 'earnings', 'deductions']",
-      "Patterns matched (4)"
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee code', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
     ],
-    "processing_time_ms": 45.8,
+    "processing_time_ms": 49.9,
     "error": null
   },
   {
-    "file": "new_outside_data\\Payslip_Sep_2025.pdf",
+    "file": "New_Group_dataset\\payslip_Arjun_Mehta_EMP1067_February_2024.pdf",
     "label": "Payslip",
-    "confidence": 0.9053,
+    "confidence": 0.8509,
     "method": "rules",
     "extraction_method": "pdfplumber",
     "extracted_fields": {
-      "pan_number": "FCOPR1933L",
-      "employee_id": "108362",
-      "pay_period": "September 2025"
+      "employee_id": "EMP1067"
     },
     "scores": {
-      "bank_statement": -0.35,
-      "payslip": 1.37,
-      "tax_document": -0.17
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
     },
     "reasoning": [
-      "Keywords matched (7): ['payslip', 'net pay', 'house rent allowance', 'provident fund', 'earnings', 'deductions']",
-      "Patterns matched (4)"
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee code', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
     ],
-    "processing_time_ms": 54.7,
+    "processing_time_ms": 44.9,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Arjun_Mehta_EMP1067_January_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1067"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee code', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 46.6,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Arjun_Mehta_EMP1067_June_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1067"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee code', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 43.5,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Arjun_Mehta_EMP1067_March_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1067"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee code', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 38.1,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Arjun_Mehta_EMP1067_May_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1067"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee code', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 35.7,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Divya_Krishnamurthy_EMP1089_April_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1089"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee id', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 45.7,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Divya_Krishnamurthy_EMP1089_July_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1089"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee id', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 40.5,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Divya_Krishnamurthy_EMP1089_June_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1089"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee id', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 96.2,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Divya_Krishnamurthy_EMP1089_May_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1089"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee id', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 35.2,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Neha_Gupta_EMP1045_February_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1045"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (12): ['payslip', 'pay slip', 'employee name', 'basic salary', 'net salary', 'house rent allowance']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 43.0,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Neha_Gupta_EMP1045_January_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1045"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (12): ['payslip', 'pay slip', 'employee name', 'basic salary', 'net salary', 'house rent allowance']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 52.5,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Neha_Gupta_EMP1045_March_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1045"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (12): ['payslip', 'pay slip', 'employee name', 'basic salary', 'net salary', 'house rent allowance']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 59.2,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Pooja_Sharma_EMP1134_April_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1134"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (12): ['payslip', 'pay slip', 'employee name', 'basic salary', 'net salary', 'house rent allowance']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 49.8,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Pooja_Sharma_EMP1134_June_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1134"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (12): ['payslip', 'pay slip', 'employee name', 'basic salary', 'net salary', 'house rent allowance']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 48.1,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Pooja_Sharma_EMP1134_May_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1134"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (12): ['payslip', 'pay slip', 'employee name', 'basic salary', 'net salary', 'house rent allowance']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 38.3,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Rahul_Sharma_EMP1021_April_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1021"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee id', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 46.2,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Rahul_Sharma_EMP1021_February_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1021"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee id', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 38.4,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Rahul_Sharma_EMP1021_January_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1021"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee id', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 69.8,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Rahul_Sharma_EMP1021_March_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1021"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee id', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 45.9,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Rahul_Sharma_EMP1021_May_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1021"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee id', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 53.0,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Ravi_Teja_Reddy_EMP1156_April_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1156"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee code', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 36.0,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Ravi_Teja_Reddy_EMP1156_February_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1156"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee code', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 38.9,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Ravi_Teja_Reddy_EMP1156_January_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1156"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee code', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 83.5,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Ravi_Teja_Reddy_EMP1156_March_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1156"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee code', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 42.7,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Vikram_Singh_EMP1102_April_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1102"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee id', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 41.9,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Vikram_Singh_EMP1102_February_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1102"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee id', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 47.5,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Vikram_Singh_EMP1102_July_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1102"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee id', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 86.1,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Vikram_Singh_EMP1102_June_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1102"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee id', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 106.9,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Vikram_Singh_EMP1102_March_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1102"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee id', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 40.6,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\payslip_Vikram_Singh_EMP1102_May_2024.pdf",
+    "label": "Payslip",
+    "confidence": 0.8509,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1102"
+    },
+    "scores": {
+      "bank_statement": -0.2,
+      "payslip": 1.17,
+      "tax_document": 0.04
+    },
+    "reasoning": [
+      "Keywords matched (13): ['payslip', 'pay slip', 'employee name', 'employee id', 'basic salary', 'net salary']",
+      "Patterns matched (4)",
+      "Negative keywords reduced score: ['uan']"
+    ],
+    "processing_time_ms": 36.0,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\pf_statement_ArjunMehta_FY2023_24.pdf",
+    "label": "Others",
+    "confidence": 0.82,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "pan_number": "CMNPQ9012R"
+    },
+    "scores": {
+      "bank_statement": 0.0,
+      "payslip": -0.9,
+      "tax_document": 0.18
+    },
+    "reasoning": [
+      "No category scored above threshold \u2014 classified as Others"
+    ],
+    "processing_time_ms": 114.2,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\rental_agreement_PriyaNair_Apr2024.pdf",
+    "label": "Others",
+    "confidence": 0.88,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 0.0,
+      "payslip": 0.12,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "No category scored above threshold \u2014 classified as Others"
+    ],
+    "processing_time_ms": 85.3,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\salary_certificate_DivyaKrishnamurthy_ThoughtFocus_Jun2024.pdf",
+    "label": "Others",
+    "confidence": 0.83,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {
+      "employee_id": "EMP1089"
+    },
+    "scores": {
+      "bank_statement": 0.0,
+      "payslip": 0.17,
+      "tax_document": 0.12
+    },
+    "reasoning": [
+      "No category scored above threshold \u2014 classified as Others"
+    ],
+    "processing_time_ms": 58.9,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\utility_bill_BESCOM_May2024_RahulSharma.pdf",
+    "label": "Others",
+    "confidence": 1.0,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 0.0,
+      "payslip": 0.0,
+      "tax_document": 0.0
+    },
+    "reasoning": [
+      "No category scored above threshold \u2014 classified as Others"
+    ],
+    "processing_time_ms": 34.5,
+    "error": null
+  },
+  {
+    "file": "New_Group_dataset\\vehicle_rc_AmitVerma_KA05MK4521.pdf",
+    "label": "Others",
+    "confidence": 0.82,
+    "method": "rules",
+    "extraction_method": "pdfplumber",
+    "extracted_fields": {},
+    "scores": {
+      "bank_statement": 0.18,
+      "payslip": 0.12,
+      "tax_document": -0.2
+    },
+    "reasoning": [
+      "No category scored above threshold \u2014 classified as Others"
+    ],
+    "processing_time_ms": 62.4,
     "error": null
   }
 ]

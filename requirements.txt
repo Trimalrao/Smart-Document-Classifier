@@ -4,6 +4,8 @@ pdfplumber>=0.10.0        # Native PDF text extraction (tables + text)
 pymupdf>=1.23.0           # PDF fallback + scanned PDF rendering (import as fitz)
 Pillow>=10.0.0            # Image loading and preprocessing
 pytesseract>=0.3.10       # Python wrapper for Tesseract OCR engine
+pandas>=2.0.0
+openpyxl>=3.1.0
 
 # ML (optional – needed for MLClassifier / EnsembleClassifier)
 scikit-learn>=1.4.0       # TF-IDF + Logistic Regression

@@ -79,7 +79,26 @@ CATEGORIES = {
             r"pay\s+(period|for\s+the\s+month)",
             r"(earnings|deductions)\s+total\s*[:\-]?\s*[\$₹£€]?[\d,]+",
         ],
-        "negative_keywords": ["bank statement", "form 16"],
+        "negative_keywords": [
+            "bank statement", "form 16",
+            # Increment / offer / appointment letters mention salary figures
+            # but are NOT payslips — block them
+            "increment letter", "salary increment", "offer letter",
+            "appointment letter", "revised salary", "revised ctc",
+            "effective from", "dear ms", "dear mr",
+            "congratulations", "with effect from",
+            # NOC / certificates — mention employee details but are NOT payslips
+            "no objection certificate", "noc", "to whomsoever it may concern",
+            "to whomsoever", "this certifies", "this is to certify",
+            "salary certificate", "employment certificate",
+            "experience certificate", "relieving letter",
+            "permanent employee", "date of joining",
+            # PF statements mention provident fund heavily but are NOT payslips
+            "pf statement", "annual pf statement", "epfo",
+            "employees provident fund organisation",
+            "emp. contrib", "empr. contrib",
+            "member name", "uan",
+        ],
         "weight": 1.0,
     },
 
@@ -104,7 +123,15 @@ CATEGORIES = {
             r"(gross\s+total|taxable)\s+income",
             r"tds\s*(deducted|certificate|details)",
         ],
-        "negative_keywords": ["payslip", "salary slip", "bank statement"],
+        "negative_keywords": [
+            "payslip", "salary slip", "bank statement",
+            # Insurance policies mention PAN, Section 80C as tax benefits
+            # but are NOT tax documents — block them
+            "insurance", "policy number", "policy schedule",
+            "sum assured", "annual premium", "premium term",
+            "life cover", "death benefit", "critical illness",
+            "policyholder", "irdai", "policy start",
+        ],
         "weight": 1.0,
     },
 
@@ -173,7 +200,10 @@ def _score_category(text: str, category_key: str) -> tuple[float, list]:
                 neg_hits.append(nk)
 
     if neg_hits:
-        score -= 0.35
+        # Each negative keyword deducts 0.20, uncapped — strong contradictory
+        # signals (e.g. 7 hits on an increment letter) will reliably push the
+        # score below threshold even when positive keywords also matched.
+        score -= len(neg_hits) * 0.20
         reasoning.append(f"Negative keywords reduced score: {neg_hits}")
 
     return round(score * cat["weight"], 4), reasoning

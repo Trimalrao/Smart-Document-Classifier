@@ -4,12 +4,11 @@ DocSense — Batch CLI
 ════════════════════════════════════════════════════════════
 
 HOW TO USE:
-  1. Set INPUT_PATH below to your file or folder path
+  1. Set INPUT_PATH below to a folder containing documents
   2. Run:  python main.py
-  3. That's it!
-
-     • Single file  → result printed in terminal
-     • Folder       → result printed + saved to results.json
+  3. Results are saved to:
+       • results.json          — raw classification output
+       • document_summary.xlsx — grouped Excel report
 
 ════════════════════════════════════════════════════════════
 """
@@ -23,14 +22,14 @@ from pathlib import Path
 logging.basicConfig(level=logging.CRITICAL)
 
 # ════════════════════════════════════════════════════════════
-#  ✏️  SET YOUR FILE OR FOLDER PATH HERE
+#  ✏️  SET YOUR FOLDER PATH HERE
 # ════════════════════════════════════════════════════════════
 
-# INPUT_PATH  = r"data\Bank Statement Online.pdf"   # single file
-INPUT_PATH = r"new_outside_data"                            # entire folder
+INPUT_PATH    = r"New_Group_dataset"    # folder containing PDFs
 
-VERBOSE      = False
-OUTPUT_JSON  = r"results.json"
+VERBOSE       = False
+OUTPUT_JSON   = r"results.json"
+OUTPUT_EXCEL  = r"document_summary.xlsx"
 
 # ════════════════════════════════════════════════════════════
 #  DO NOT EDIT BELOW THIS LINE
@@ -62,7 +61,6 @@ def show_single(r):
     filled = int(conf * 20)
     bar    = G("█" * filled) + D("░" * (20 - filled))
     ok     = G("✓") if not r.error else R("✗")
-
     print()
     print(B("─" * 62))
     print(f"  {B('File      :')} {Path(r.file_path).name}")
@@ -75,11 +73,6 @@ def show_single(r):
     if r.extracted_fields:
         print(f"  {B('Fields    :')} " +
               "  |  ".join(f"{k}: {C(v)}" for k, v in r.extracted_fields.items()))
-    if r.classification.scores:
-        print(f"  {B('Scores    :')}")
-        for lbl, sc in sorted(r.classification.scores.items(), key=lambda x: x[1], reverse=True):
-            bw = int(min(max(sc, 0), 1.0) * 20)
-            print(f"      {lbl:<28} [{'▓'*bw}{'░'*(20-bw)}] {sc:.4f}")
     if VERBOSE and r.classification.reasoning:
         print(f"  {B('Reasoning :')}")
         for reason in r.classification.reasoning:
@@ -88,7 +81,7 @@ def show_single(r):
     print()
 
 
-def show_batch(results, out_path):
+def show_batch(results, json_path, excel_path):
     from collections import Counter
     total  = len(results)
     errors = sum(1 for r in results if r.error)
@@ -109,9 +102,10 @@ def show_batch(results, out_path):
     for label, cnt in Counter(r.classification.label for r in results).most_common():
         print(f"      {cl(label):<28}  {cnt} file(s)")
     if errors:
-        print(f"  {R(f'  {errors} error(s) — check {out_path} for details.')}")
+        print(f"  {R(f'  {errors} error(s) — see {json_path} for details.')}")
     print(B("═" * 70))
-    print(f"\n  {G('✓')} Results saved  →  {C(B(out_path))}\n")
+    print(f"\n  {G('✓')} results.json saved      →  {C(B(json_path))}")
+    print(f"  {G('✓')} Excel report saved       →  {C(B(excel_path))}\n")
 
 
 def main():
@@ -124,6 +118,7 @@ def main():
     from src.pipeline import DocumentClassificationPipeline
     pipeline = DocumentClassificationPipeline()
 
+    # ── Single file ───────────────────────────────────────────────────────────
     if path.is_file():
         if path.suffix.lower() not in SUPPORTED:
             print(R(f"\n✗  Unsupported file type: {path.suffix}"))
@@ -131,27 +126,49 @@ def main():
         print(D(f"\n  Classifying  {path.name} …"))
         result = pipeline.run(path)
         show_single(result)
+        return
 
-    elif path.is_dir():
-        files = sorted(f for f in path.rglob("*") if f.suffix.lower() in SUPPORTED)
-        if not files:
-            print(Y(f"\n⚠  No supported documents found in: {INPUT_PATH}\n"))
-            sys.exit(0)
-        print(B(f"\n  Found {len(files)} document(s) in '{path.name}\\' — classifying …\n"))
-        results = []
-        t_start = time.perf_counter()
-        for i, fp in enumerate(files, 1):
-            print(f"  [{i:>3}/{len(files)}]  {fp.name:<44}", end=" ", flush=True)
-            r = pipeline.run(fp)
-            results.append(r)
-            print(f"{G('✓') if not r.error else R('✗')}  {cl(r.classification.label)}")
-        elapsed = time.perf_counter() - t_start
-        Path(OUTPUT_JSON).write_text(
-            json.dumps([r.to_dict() for r in results], indent=2, default=str),
-            encoding="utf-8",
-        )
-        show_batch(results, OUTPUT_JSON)
-        print(D(f"  Total time: {elapsed:.1f}s  ({elapsed/len(files)*1000:.0f} ms/file avg)\n"))
+    # ── Folder (batch) ────────────────────────────────────────────────────────
+    files = sorted(f for f in path.rglob("*") if f.suffix.lower() in SUPPORTED)
+    if not files:
+        print(Y(f"\n⚠  No supported documents found in: {INPUT_PATH}\n"))
+        sys.exit(0)
+
+    print(B(f"\n  Found {len(files)} document(s) in '{path.name}\\' — classifying …\n"))
+    results = []
+    t_start = time.perf_counter()
+
+    for i, fp in enumerate(files, 1):
+        print(f"  [{i:>3}/{len(files)}]  {fp.name:<44}", end=" ", flush=True)
+        r = pipeline.run(fp)
+        results.append(r)
+        print(f"{G('✓') if not r.error else R('✗')}  {cl(r.classification.label)}")
+
+    elapsed = time.perf_counter() - t_start
+
+    # ── Save raw JSON ─────────────────────────────────────────────────────────
+    Path(OUTPUT_JSON).write_text(
+        json.dumps([r.to_dict() for r in results], indent=2, default=str),
+        encoding="utf-8",
+    )
+
+    # ── Generate Excel report ─────────────────────────────────────────────────
+    excel_out = OUTPUT_EXCEL
+    try:
+        from src.report_generator import generate_report
+        print(f"\n  {D('Generating Excel report …')}", end=" ", flush=True)
+        excel_out = generate_report(results, output_path=OUTPUT_EXCEL)
+        print(G("✓"))
+    except ImportError:
+        print(R("✗"))
+        print(R("  pandas / openpyxl not installed — skipping Excel report."))
+        print(R("  Run:  pip install pandas openpyxl"))
+    except Exception as e:
+        print(R("✗"))
+        print(R(f"  Excel report failed: {e}"))
+
+    show_batch(results, OUTPUT_JSON, excel_out)
+    print(D(f"  Total time: {elapsed:.1f}s  ({elapsed/len(files)*1000:.0f} ms/file avg)\n"))
 
 
 if __name__ == "__main__":

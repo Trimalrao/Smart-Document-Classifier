@@ -1,368 +1,213 @@
 # 🔍 DocSense — Document Content Classifier
 
-> Automatically classify financial and HR documents into **Bank Statement**, **Payslip**, **Tax Document**, or **Others** — in under 200ms per file, with no manual labelling required.
+Automatically classifies documents (PDFs, scanned images, text files) into:
+
+| Category | Examples |
+|---|---|
+| **Bank Statement** | Account statements, passbooks |
+| **Payslip** | Salary slips, pay stubs |
+| **Tax Document** | Form 16, Form 26AS, ITR |
+| **Others** | Invoices, contracts, misc. |
 
 ---
 
-## Table of Contents
+## Project Architecture
 
-1. [What It Does](#what-it-does)
-2. [Quick Start](#quick-start)
-3. [Folder Structure](#folder-structure)
-4. [Architecture Overview](#architecture-overview)
-5. [How Classification Works](#how-classification-works)
-6. [Supported File Types](#supported-file-types)
-7. [Output Categories](#output-categories)
-8. [Running the Web UI](#running-the-web-ui)
-9. [Running the Batch CLI](#running-the-batch-cli)
-10. [Configuration](#configuration)
-11. [Dependencies](#dependencies)
-12. [Accuracy & Test Results](#accuracy--test-results)
-13. [Adding New Categories](#adding-new-categories)
-14. [Known Issues Fixed](#known-issues-fixed)
-15. [Future Improvements](#future-improvements)
-
----
-
-## What It Does
-
-DocSense reads the **content** of a document — not its filename — and determines what type of document it is. It handles:
-
-- Native PDFs (digital bank statements, payslips, tax forms)
-- Scanned PDFs (photographed or faxed documents)
-- Images (JPG, PNG, BMP, TIFF)
-- Plain text files
-
-It exposes two interfaces:
-- **Web UI** — drag-and-drop browser interface at `http://localhost:5000`
-- **Batch CLI** — process a single file or an entire folder from the terminal
+```
+┌──────────────────────────────────────────────────────────────┐
+│                  INPUT DOCUMENTS                             │
+│         PDF  │  Scanned Image  │  Plain Text                 │
+└──────┬────────────────┬─────────────────┬────────────────────┘
+       │                │                 │
+       ▼                ▼                 ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   EXTRACTOR (extractor.py)                  │
+│  pdfplumber → PyMuPDF → OCR fallback   │  Tesseract OCR    │
+│  (native PDF)            (scanned PDF) │  (image files)    │
+└─────────────────────────────┬───────────────────────────────┘
+                              │  raw text
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                PREPROCESSOR (preprocessor.py)               │
+│  Unicode normalise → OCR artifact fix → whitespace norm     │
+│  → abbreviation expansion → (optional: stopword removal)   │
+└─────────────────────────────┬───────────────────────────────┘
+                              │  cleaned text
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                  CLASSIFIER (classifier.py)                 │
+│                                                             │
+│   ┌─────────────────┐    ┌─────────────────┐               │
+│   │  Rules-Based    │    │  ML Classifier  │               │
+│   │  (keywords +    │    │  TF-IDF + LR    │               │
+│   │   regex)        │    │  (sklearn)      │               │
+│   └────────┬────────┘    └────────┬────────┘               │
+│            └──────────┬───────────┘                         │
+│                       ▼                                     │
+│              EnsembleClassifier                             │
+│           (weighted score fusion)                           │
+└─────────────────────────────┬───────────────────────────────┘
+                              │  label + confidence + scores
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│             FIELD EXTRACTOR (preprocessor.py)               │
+│   PAN  │  TAN  │  Account No  │  Employee ID  │  Period     │
+└─────────────────────────────┬───────────────────────────────┘
+                              │
+                              ▼
+                    PipelineResult (JSON)
+```
 
 ---
 
 ## Quick Start
 
+### 1. Install dependencies
+
 ```bash
-# 1. Install dependencies
-cd docsense
+# Python packages
 pip install -r requirements.txt
 
-# 2a. Run the web interface
-python app.py
-# Open http://localhost:5000
-
-# 2b. Or run the batch CLI — set INPUT_PATH in main.py first
-python main.py
+# Tesseract OCR engine (required for scanned images)
+# Ubuntu:  sudo apt install tesseract-ocr tesseract-ocr-eng
+# macOS:   brew install tesseract
+# Windows: https://github.com/UB-Mannheim/tesseract/wiki
 ```
 
-> **Anthropic API Key required** for scanned PDFs and images (Claude Vision OCR).
-> Set the environment variable: `ANTHROPIC_API_KEY=sk-ant-...`
-
----
-
-## Folder Structure
-
-```
-docsense/
-│
-├── app.py                    ← Flask web server
-├── main.py                   ← Batch CLI (set INPUT_PATH inside, then run)
-├── requirements.txt
-│
-├── src/
-│   ├── classifier.py         ← Rules + ML + Ensemble classifiers  ← CORE
-│   ├── extractor.py          ← PDF / Image / Text extraction
-│   ├── preprocessor.py       ← Text cleaning & field extraction
-│   ├── pipeline.py           ← Orchestrates all steps end-to-end
-│   └── evaluator.py          ← Accuracy metrics (precision / recall / F1)
-│
-├── static/css/style.css      ← DocSense dark-theme UI
-├── templates/index.html      ← Web UI (drag-drop interface)
-└── data/                     ← Put your documents here
-```
-
----
-
-## Architecture Overview
-
-```
-USER INPUT
-    │
-    ├── Web Browser  ──→  POST /classify  ──→  app.py
-    └── Terminal     ──→  python main.py  ──→  main.py
-                                │
-                    ┌───────────▼───────────┐
-                    │  pipeline.py           │
-                    │  .run(file_path)       │
-                    └───────────┬───────────┘
-                                │
-               ┌────────────────▼────────────────┐
-               │        STEP 1: EXTRACTION         │
-               │        src/extractor.py           │
-               │                                   │
-               │  PDF ──→ pdfplumber               │
-               │       ──→ PyMuPDF  (fallback)     │
-               │       ──→ Claude Vision (scanned) │
-               │  Image ──→ Claude Vision API      │
-               │  TXT   ──→ utf-8 / latin-1 read   │
-               └────────────────┬────────────────┘
-                                │  raw text
-               ┌────────────────▼────────────────┐
-               │      STEP 2: PREPROCESSING        │
-               │      src/preprocessor.py          │
-               │                                   │
-               │  unicode normalise                 │
-               │  fix OCR artifacts                 │
-               │  collapse whitespace               │
-               │  expand abbreviations              │
-               │  (HRA→house rent allowance, etc.) │
-               └────────────────┬────────────────┘
-                                │  cleaned text
-               ┌────────────────▼────────────────┐
-               │      STEP 3: CLASSIFICATION       │
-               │      src/classifier.py            │
-               │                                   │
-               │  Score vs bank_statement           │
-               │  Score vs payslip                  │
-               │  Score vs tax_document             │
-               │                                   │
-               │  Best score ≥ 0.20?               │
-               │    YES → winning category          │
-               │    NO  → Others                   │
-               └────────────────┬────────────────┘
-                                │  label + confidence
-               ┌────────────────▼────────────────┐
-               │     STEP 4: FIELD EXTRACTION      │
-               │     src/preprocessor.py           │
-               │                                   │
-               │  PAN number · TAN number           │
-               │  Account number · Employee ID      │
-               │  Assessment year · Pay period      │
-               └────────────────┬────────────────┘
-                                │
-                    ┌───────────▼───────────┐
-                    │     PipelineResult     │
-                    │  label                 │
-                    │  confidence            │
-                    │  extracted_fields      │
-                    │  reasoning             │
-                    │  processing_time_ms    │
-                    └───────────────────────┘
-```
-
----
-
-## How Classification Works
-
-### The Scoring Engine (`src/classifier.py`)
-
-Every document is scored against each category using three passes:
-
-#### Pass 1 — Keyword Matching
-Each category has a curated list of keywords. Multi-word phrases (`"opening balance"`) use simple substring search. Single words (`"payslip"`) use word-boundary regex (`\b`) to prevent false matches — so `"da"` (dearness allowance) does **not** match inside `"standard"` or `"Accidental"`.
-
-```
-Each keyword hit  → +0.12 to score  (capped at 0.65)
-```
-
-#### Pass 2 — Regex Pattern Matching
-Patterns detect structured data that keywords cannot. For example:
-
-```python
-r"(opening|closing)\s*[:\-]\s*[\$₹£€]?[\d,]+\.\d{2}"
-# Matches: "Opening: $2,465.44"  AND  "Opening Balance: ₹10,000.00"
-```
-
-```
-Each pattern match  → +0.18 to score
-```
-
-#### Pass 3 — Negative Keyword Penalty
-Contradictory signals reduce the score. A document with `"form 16"` in it is penalised when scoring as Payslip.
-
-```
-Each negative keyword hit  → −0.35 from score
-```
-
-#### Threshold & Winner
-The category with the highest score wins, **provided it exceeds 0.20**. If no category clears this threshold, the document is labelled **Others**.
-
-#### Confidence Calculation
-Raw scores can be negative (due to penalties), so scores are shifted before normalising:
-
-```python
-min_score  = min(scores.values())
-shifted    = {k: v - min_score for k, v in scores.items()}
-confidence = shifted[best_category] / sum(shifted.values())
-```
-
-This guarantees confidence is always between 0% and 99%.
-
----
-
-### Three Classifier Classes
-
-| Class | Method | Use Case |
-|---|---|---|
-| `RulesBasedClassifier` | Keywords + regex | Default — works with zero training data |
-| `MLClassifier` | TF-IDF + Logistic Regression | When 50+ labelled samples per category are available |
-| `EnsembleClassifier` | 40% Rules + 60% ML | Best accuracy when both are available |
-
-The system ships with **RulesBasedClassifier** as default. ML and Ensemble are available as optional upgrades.
-
----
-
-### ML Classifier Details
-
-When enabled, the `MLClassifier` uses a scikit-learn pipeline:
-
-```
-Text → TfidfVectorizer → LogisticRegression → Label + Probabilities
-        (max 10,000 features, 1–2 grams, sublinear TF)
-        (1000 iterations, balanced class weights)
-```
-
-Train it:
-```python
-from src.classifier import MLClassifier
-clf = MLClassifier()
-clf.train(texts=["...", "..."], labels=["Bank Statement", "Payslip", ...])
-clf.save("models/model.pkl")
-```
-
----
-
-## Supported File Types
-
-| Type | Extensions | Extraction Method |
-|---|---|---|
-| Native PDF | `.pdf` | pdfplumber → PyMuPDF → Claude Vision |
-| Scanned PDF | `.pdf` | Claude Vision API (OCR) |
-| Images | `.jpg` `.jpeg` `.png` `.bmp` `.tiff` `.webp` | Claude Vision API |
-| Plain text | `.txt` | UTF-8 / latin-1 / cp1252 |
-
----
-
-## Output Categories
-
-| Label | Documents Covered |
-|---|---|
-| **Bank Statement** | HDFC, SBI, Axis, Wells Fargo, Citibank, PNC, Deutsche Bank, HSBC, and more |
-| **Payslip** | Salary slips, pay stubs — Indian (HRA/DA/PF) and international formats |
-| **Tax Document** | Form 16, Form 16A, Form 26AS, TDS certificates, ITR acknowledgements |
-| **Others** | Insurance policies, loan statements, utility bills, credit card statements, invoices, contracts |
-
----
-
-## Running the Web UI
+### 2. Classify a single document
 
 ```bash
-python app.py
+python main.py classify path/to/document.pdf
 ```
 
-Open **http://localhost:5000**. The interface supports:
-- Drag-and-drop or browse file selection
-- PDF and image preview
-- Live confidence bar animation
-- Colour-coded result per category
-- Classify another button to reset
+### 3. Classify a whole folder
 
-**API endpoint for integration:**
-
-```
-POST /classify
-Content-Type: multipart/form-data
-Body: file=<document>
-
-Response:
-{
-    "category":   "Bank Statement",
-    "confidence": 0.92,
-    "reason":     "Detected bank account transactions, balance entries...",
-    "filename":   "wells_fargo_march.pdf"
-}
-```
-
----
-
-## Running the Batch CLI
-
-Open `main.py` and set the path at the top:
-
-```python
-# Single file
-INPUT_PATH = r"data\Bank Statement Online.pdf"
-
-# Entire folder
-INPUT_PATH = r"data"
-```
-
-Then run:
 ```bash
-python main.py
+python main.py classify path/to/folder/ --output results.json
 ```
 
-**Single file output** — colour-coded terminal panel with label, confidence bar, extracted fields, and per-category scores.
+### 4. Verbose output (with reasoning)
 
-**Folder output** — live progress line per file, summary table at the end, and `results.json` saved automatically.
+```bash
+python main.py classify document.pdf --verbose
+```
 
 ---
 
-## Configuration
-
-All settings are at the top of `main.py`:
+## Python API
 
 ```python
-INPUT_PATH   = r"data\my_doc.pdf"   # file or folder path
-VERBOSE      = False                 # True → show matched keywords & scores
-OUTPUT_JSON  = r"results.json"       # where to save batch results
-USE_ML_MODEL = False                 # True → load a trained ML model
-ML_MODEL_PATH = r"models\ml_model.pkl"
+from src.pipeline import DocumentClassificationPipeline
+
+pipeline = DocumentClassificationPipeline()
+result = pipeline.run("salary_jan2024.pdf")
+
+print(result.classification.label)       # "Payslip"
+print(result.classification.confidence)  # 0.87
+print(result.extracted_fields)           # {"employee_id": "EMP00123", ...}
 ```
 
 ---
 
-## Dependencies
+## Document Processing Workflow
 
 ```
-flask>=3.0.0          # Web server
-pdfplumber>=0.10.0    # PDF text extraction (primary)
-pymupdf>=1.23.0       # PDF extraction fallback + image rendering
-Pillow>=10.0.0        # Image handling for Claude Vision upload
-
-# Optional (ML classifier only):
-scikit-learn>=1.4.0
-joblib>=1.3.0
+New Document arrives
+        │
+        ▼
+  Detect file type
+  ┌─────┴──────┐
+  │            │
+ PDF        Image/Scan
+  │            │
+  ▼            ▼
+Has native   Tesseract
+text? ──No──► OCR
+  │
+  Yes
+  │
+  ▼
+pdfplumber
+(text + tables)
+  │
+  ▼
+Text < 50 chars?
+  │ Yes → PyMuPDF → Still sparse? → OCR
+  │ No
+  ▼
+Preprocess text
+  │
+  ▼
+Score against each category
+  │   bank_statement: 0.72
+  │   payslip:        0.18
+  │   tax_document:   0.05
+  │
+  ▼
+Best score > 0.15?
+  │ No  → label = "Others"
+  │ Yes → label = top category
+  ▼
+Extract key fields (PAN, account no, ...)
+  │
+  ▼
+Return PipelineResult
 ```
-
-No Tesseract installation required. Image OCR is handled entirely by the Claude Vision API.
 
 ---
 
-## Accuracy & Test Results
+## Tools & Libraries Reference
 
-Tested on 53 labelled documents covering Indian and US financial documents:
+| Task | Library | Notes |
+|---|---|---|
+| Native PDF extraction | `pdfplumber` | Best for tables and structured PDFs |
+| PDF fallback / rendering | `pymupdf` (fitz) | Fast, also handles scanned PDFs |
+| OCR engine | `pytesseract` + `Tesseract` | Open-source, supports 100+ languages |
+| Image preprocessing | `Pillow` | Grayscale, contrast, sharpening |
+| ML classification | `scikit-learn` | TF-IDF + Logistic Regression |
+| Model persistence | `joblib` | Save/load sklearn pipelines |
+| Transformer (future) | `transformers` + HuggingFace | BERT/LayoutLM for higher accuracy |
 
-| Category | Precision | Recall | F1 | Documents |
-|---|---|---|---|---|
-| Bank Statement | ~97% | ~95% | ~96% | 19 |
-| Payslip | ~98% | ~99% | ~98% | 13 |
-| Tax Document | ~96% | ~97% | ~96% | 13 |
-| Others | ~92% | ~94% | ~93% | 8 |
-| **Overall** | — | — | **~96%** | **53** |
+---
+
+## Training the ML Classifier
+
+Prepare a JSON file `data/training_samples.json`:
+
+```json
+[
+  {"text": "Account No 123456 IFSC SBIN0001 debit credit balance ...", "label": "Bank Statement"},
+  {"text": "Employee ID EMP001 Basic Pay HRA PF Gross Net Salary ...", "label": "Payslip"},
+  {"text": "Form 16 TAN PAN Assessment Year 2023-24 Section 80C ...", "label": "Tax Document"},
+  {"text": "Invoice GST 18 percent payment due 30 days ...",           "label": "Others"}
+]
+```
+
+Train and save:
+
+```bash
+python main.py train --data data/training_samples.json --save models/ml_model.pkl
+```
+
+Classify using the trained model:
+
+```bash
+python main.py classify document.pdf --model models/ml_model.pkl
+```
 
 ---
 
 ## Adding New Categories
 
-All category logic lives in the `CATEGORIES` dictionary in `src/classifier.py`. To add a new category, append a new entry:
+1. Open `src/classifier.py`
+2. Add an entry to the `CATEGORIES` dict:
 
 ```python
 "invoice": {
     "label": "Invoice",
     "keywords": [
-        "invoice number", "bill to", "invoice date",
-        "subtotal", "total amount due", "gst number",
-        "hsn code", "payment terms",
+        "invoice", "bill to", "gst number", "hsn code",
+        "taxable value", "cgst", "sgst", "igst",
     ],
     "patterns": [
         r"invoice\s*(no\.?|number|#)\s*[:\-]?\s*\w+",
@@ -370,34 +215,91 @@ All category logic lives in the `CATEGORIES` dictionary in `src/classifier.py`. 
     ],
     "negative_keywords": ["bank statement", "payslip", "form 16"],
     "weight": 1.0,
-},
+}
 ```
 
-Also add to `REASON_TEMPLATES` and update the frontend `CAT` map in `templates/index.html`. Nothing else needs to change.
+No other changes needed — the classifier auto-discovers all categories.
 
 ---
 
-## Known Issues Fixed
+## Evaluation
 
-| Issue | Root Cause | Fix |
-|---|---|---|
-| Insurance / Loan / Utility bills classified as Payslip | `"da"` keyword matched inside "Accidental", "Address", "Standard" | Applied `\b` word-boundary regex to all single-word keywords |
-| US bank statements scored 0.00 | Keywords only covered Indian format (`"opening balance"`); US uses `"Opening: $x"` | Added US bank names, `"fdic"`, `"monthly statement"`, `"atm withdrawal"` + regex for `Opening: $x` format |
-| Confidence above 100% or negative | Negative penalty pushed scores below zero before normalising | Shift all scores by `|min_score|` before normalising |
-| CLI crashed on file paths with spaces | argparse subparsers conflicted with positional path argument | Replaced argparse with manual `sys.argv` routing |
-| Images all classified as Others | Tesseract not installed on Windows | Replaced Tesseract with Claude Vision API entirely |
+Prepare ground truth and prediction lists:
+
+```bash
+python main.py evaluate \
+  --labels data/true_labels.json \
+  --predictions data/pred_labels.json
+```
+
+Example output:
+
+```
+============================================================
+CLASSIFICATION EVALUATION REPORT
+============================================================
+Overall Accuracy : 91.20%
+Macro F1         : 0.9087
+
+Class                  Precision   Recall       F1   Support
+------------------------------------------------------------
+Bank Statement            0.9400   0.9200   0.9299       100
+Payslip                   0.9300   0.9500   0.9399        80
+Tax Document              0.8900   0.8800   0.8850        60
+Others                    0.8700   0.8600   0.8650        40
+============================================================
+```
+
+### Recommended Metrics
+
+| Metric | Why it matters |
+|---|---|
+| **Accuracy** | Overall correctness |
+| **Precision (per class)** | When we label X, how often correct? |
+| **Recall (per class)** | Of all real X docs, how many caught? |
+| **F1 Score** | Harmonic mean — useful when classes are imbalanced |
+| **Macro F1** | Average F1 across all classes (treats all equally) |
+| **Confusion Matrix** | Shows exactly which categories get confused |
 
 ---
 
-## Future Improvements
+## Tips for Ambiguous Documents & Improving Accuracy
 
-- **LayoutLM Transformer** — fine-tune on document images + text for layout-aware classification (~99% accuracy target)
-- **Confidence threshold review queue** — flag low-confidence documents for human review instead of auto-classifying
-- **Active learning loop** — 'Correct This' button in UI feeds corrections back into a training queue
-- **Multi-label classification** — some documents (Form 16 Part B) are simultaneously payslip + tax document
-- **REST API with auth** — API key authentication for integration with other internal systems
-- **Regional language support** — Hindi, Tamil, Bengali keywords and OCR prompts
+### Handling Ambiguous Documents
+
+1. **Use confidence thresholds** — If `confidence < 0.5`, flag for human review instead of blindly accepting.
+2. **Check extracted fields** — A document labelled as a Payslip but with no `employee_id` extracted is suspicious.
+3. **Ensemble voting** — The `EnsembleClassifier` combines rules + ML scores. With more ML training data, ML weight can be increased from 0.6 → 0.8.
+4. **Log low-confidence predictions** — Build a feedback loop where reviewers correct mistakes, creating new training samples.
+
+### Improving Accuracy Over Time
+
+| Strategy | Description |
+|---|---|
+| **Active learning** | Prioritise uncertain documents for human labelling |
+| **Domain keywords** | Add company-specific terms (e.g. your bank's header text) to keyword lists |
+| **More training data** | 50+ samples per class is a good minimum; 200+ is better |
+| **LayoutLM / DocFormer** | Transformer models that understand document layout — much higher accuracy for complex/mixed documents |
+| **Language support** | Add `lang="hin+eng"` to Tesseract for Hindi documents |
+| **Multi-label** | Some documents may be both a payslip and a tax document (Form 16 Part B) — extend `ClassificationResult` to support multiple labels |
 
 ---
 
-*DocSense — Content-driven document classification · No filename used · Built with Python + Flask + Claude Vision*
+## Project Structure
+
+```
+doc_classifier/
+├── main.py                  # CLI entry point
+├── requirements.txt
+├── src/
+│   ├── __init__.py
+│   ├── extractor.py         # PDF / OCR / text extraction
+│   ├── preprocessor.py      # Text cleaning + field extraction
+│   ├── classifier.py        # Rules + ML + Ensemble classifiers
+│   ├── pipeline.py          # End-to-end orchestration
+│   └── evaluator.py         # Metrics and reporting
+├── tests/
+│   └── test_classifier.py   # Unit tests
+├── data/                    # Training samples, labels (gitignore raw docs)
+└── models/                  # Saved ML model files
+```
